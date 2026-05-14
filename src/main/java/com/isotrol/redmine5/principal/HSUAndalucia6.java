@@ -2,7 +2,6 @@ package com.isotrol.redmine5.principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
 import com.isotrol.redmine5.informes.InformeLunesTop;
 

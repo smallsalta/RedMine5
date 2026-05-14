@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
 import com.isotrol.redmine5.comun.Constantes;
 import com.taskadapter.redmineapi.RedmineException;
