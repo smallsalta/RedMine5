@@ -115,6 +115,28 @@ public class InformeImputaciones
 		
 		this.imprimir(t3);
 	}
+
+	/**
+	 * Calcula las horas imputadas del mes para los trabajadores de Isotrol.
+	 *
+	 * @return total de horas imputadas por Isotrol en el periodo (mes)
+	 * @throws RedmineException
+	 * @throws URISyntaxException
+	 * @throws IOException
+	 */
+	public double getHorasIsotrolMes()
+	throws RedmineException, URISyntaxException, IOException
+	{
+		log.info("Calculando horas mensuales Isotrol ...");
+		
+		boolean isotrol = true;
+		Map<String, Double> datos = this.getTiempo( Constantes.RM_IUP_URL, Constantes.API_KEY_SILVA_IUP, isotrol, SPENT_ON.LM );
+		
+		double total = datos.values().stream().mapToDouble( Double::doubleValue ).sum();
+		log.info( total + " horas (Isotrol)" );
+		
+		return total;
+	}
 	
 	/**
 	 * Método que obtiene las entradas de tiempo semanales de los 2 Redmine.

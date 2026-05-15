@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -185,6 +186,21 @@ extends InformeLunes
 		writer.println();
 		
 		writer.flush();
+	}
+
+	/**
+	 * Variante que no escribe si alguno de los valores del mapa es null.
+	 */
+	protected void escribirFichero2(PrintWriter writer, Map<String, Object> res)
+	{
+		if( res == null || res.values().stream().anyMatch(Objects::isNull) )
+		{
+			log.info("escribirFichero2: salto por valor nulo, id=" + (res == null ? "null" : res.get("id")) );
+		}
+		else
+		{
+			this.escribirFichero(writer, res);
+		}
 	}
 	
 	protected Recursos getRecursosProy()

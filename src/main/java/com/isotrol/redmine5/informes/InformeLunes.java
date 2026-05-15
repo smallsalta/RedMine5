@@ -18,7 +18,6 @@ import org.springframework.stereotype.Component;
 import com.isotrol.redmine5.comun.Constantes;
 import com.isotrol.redmine5.comun.Constantes.ROLES;
 import com.isotrol.redmine5.comun.Miscelanea;
-import com.isotrol.redmine5.recursos.Recursos;
 import com.taskadapter.redmineapi.RedmineException;
 import com.taskadapter.redmineapi.bean.Issue;
 
@@ -126,29 +125,31 @@ extends InformeMes
 		double eCO 				= this.procesaCampoDouble( is, 50 );
 		double eAN 				= this.procesaCampoDouble( is, 44 );
 		double ePR 				= this.procesaCampoDouble( is, 46 );
-		double eTot 			= eJP + eCO + eAN + ePR;
+//		double eTot 			= eJP + eCO + eAN + ePR;
 		double rJP				= res2.get( ROLES.JP );
 		double rCO				= res2.get( ROLES.CO );
 		double rAN				= res2.get( ROLES.AN );
 		double rPR				= res2.get( ROLES.PR );
-		double rTot				= rJP + rCO + rAN + rPR;
+//		double rTot				= rJP + rCO + rAN + rPR;
 		double inc				= this.getImporte1( rJP, rCO, rAN, rPR );
 		double val1				= this.getImporte1( eJP, eCO, eAN, ePR );
 		double val2				= val1 * Constantes.EXTRA_OT;
 		double imp				= this.getImporte2( tipo, inc, val2 );
-		 		
+		
+		Miscelanea.poblarMapaHoras(res, eJP, eCO, eAN, ePR, rJP, rCO, rAN, rPR);
+		
 		res.put( "id", id );
 		res.put( "trk", tipo );
-		res.put( "eJP", fmt1.format(eJP) );
-		res.put( "eCO", fmt1.format(eCO) );
-		res.put( "eAN", fmt1.format(eAN) );
-		res.put( "ePR", fmt1.format(ePR) );
-		res.put( "eTot", fmt1.format(eTot) );
-		res.put( "rJP", fmt1.format(rJP) );
-		res.put( "rCO", fmt1.format(rCO) );
-		res.put( "rAN", fmt1.format(rAN) );
-		res.put( "rPR", fmt1.format(rPR) );
-		res.put( "rTot", fmt1.format(rTot) );
+//		res.put( "eJP", fmt1.format(eJP) );
+//		res.put( "eCO", fmt1.format(eCO) );
+//		res.put( "eAN", fmt1.format(eAN) );
+//		res.put( "ePR", fmt1.format(ePR) );
+//		res.put( "eTot", fmt1.format(eTot) );
+//		res.put( "rJP", fmt1.format(rJP) );
+//		res.put( "rCO", fmt1.format(rCO) );
+//		res.put( "rAN", fmt1.format(rAN) );
+//		res.put( "rPR", fmt1.format(rPR) );
+//		res.put( "rTot", fmt1.format(rTot) );
 		res.put( "inc", fmt1.format(inc) );
 		res.put( "val1", fmt1.format(val1) );
 		res.put( "val2", fmt1.format(val2) );
@@ -183,6 +184,8 @@ extends InformeMes
 		
 		writer.flush();
 	}
+
+    
 	
 	/**
 	 * Si es DEFECTO no se puede cobrar ... 0
@@ -214,16 +217,16 @@ extends InformeMes
 		return total;
 	}
 	
-	protected Recursos getRecursosProy()
-	{
-		return this.recursos;
-	}
-	
-	protected void gestionarFiltroMes(Map<String, String> m)
-	{
+//	protected Recursos getRecursosProy()
+//	{
+//		return this.recursos;
+//	}
+//	
+//	protected void gestionarFiltroMes(Map<String, String> m)
+//	{
 //		m.put( "spent_on", SPENT_ON.M.toString().toLowerCase() );
-		
-		m.put( "from", this.desde );
-		m.put( "to", this.hasta );
-	}
+//		
+//		m.put( "from", this.desde );
+//		m.put( "to", this.hasta );
+//	}
 }

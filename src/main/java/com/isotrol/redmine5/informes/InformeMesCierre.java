@@ -130,6 +130,8 @@ extends InformeMes
 		
 		writer.flush();
 	}
+
+    
 	
 	protected double getImporteDefecto(String tipo, double inc)
 	{

@@ -127,6 +127,8 @@ extends InformeLunes
 		
 		writer.flush();
 	}
+
+    
 	
 	protected Recursos getRecursosProy()
 	{

@@ -32,6 +32,8 @@ implements CommandLineRunner
 		this.ie.setDesde("2026-03-01");
 		this.ie.setHasta("2026-03-31");
 		
+		
+		
 		int id 			= 128902;
 		boolean mes		= true;
 		var res3 		= new TreeMap<>( this.ie.getInformeLinea( id, mes ) );

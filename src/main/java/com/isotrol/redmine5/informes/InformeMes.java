@@ -184,7 +184,7 @@ public class InformeMes
 		
 		Calendar cal			= Calendar.getInstance();
 		
-		NumberFormat fmt1		= new DecimalFormat("#0.00");
+//		NumberFormat fmt1		= new DecimalFormat("#0.00");
 		DateFormat fmt2			= new SimpleDateFormat("dd/MM/yyyy");
 		NumberFormat fmt3		= new DecimalFormat("#00");
 		
@@ -192,7 +192,7 @@ public class InformeMes
 		double eCO 				= this.procesaCampoDouble( is, 50 );
 		double eAN 				= this.procesaCampoDouble( is, 44 );
 		double ePR 				= this.procesaCampoDouble( is, 46 );
-		double eTot 			= eJP + eCO + eAN + ePR;
+//		double eTot 			= eJP + eCO + eAN + ePR;
 		double rJP				= res2.get( ROLES.JP );
 		double rCO				= res2.get( ROLES.CO );
 		double rAN				= res2.get( ROLES.AN );
@@ -206,20 +206,22 @@ public class InformeMes
 		TIPO linea				= this.linea.getLinea(tipo);
 		int id					= is.getId();
 		
+		Miscelanea.poblarMapaHoras(res, eJP, eCO, eAN, ePR, rJP, rCO, rAN, rPR);
+		
 		res.put( "id", id );
 		res.put( "sbj", is.getSubject().replaceAll( ";", " " ).replaceAll( "\"", " " ) );
 		res.put( "trk", tipo );
 		res.put( "prj", prj );
-		res.put( "eJP", fmt1.format(eJP) );
-		res.put( "eCO", fmt1.format(eCO) );
-		res.put( "eAN", fmt1.format(eAN) );
-		res.put( "ePR", fmt1.format(ePR) );
-		res.put( "eTot", fmt1.format(eTot) );
-		res.put( "rJP", fmt1.format(rJP) );
-		res.put( "rCO", fmt1.format(rCO) );
-		res.put( "rAN", fmt1.format(rAN) );
-		res.put( "rPR", fmt1.format(rPR) );
-		res.put( "rTot", fmt1.format(rTot) );
+//		res.put( "eJP", fmt1.format(eJP) );
+//		res.put( "eCO", fmt1.format(eCO) );
+//		res.put( "eAN", fmt1.format(eAN) );
+//		res.put( "ePR", fmt1.format(ePR) );
+//		res.put( "eTot", fmt1.format(eTot) );
+//		res.put( "rJP", fmt1.format(rJP) );
+//		res.put( "rCO", fmt1.format(rCO) );
+//		res.put( "rAN", fmt1.format(rAN) );
+//		res.put( "rPR", fmt1.format(rPR) );
+//		res.put( "rTot", fmt1.format(rTot) );
 		res.put( "ini", ini == null ? "" : fmt2.format(ini) );
 		res.put( "fin", fin == null ? "" : fmt2.format(fin) );
 		res.put( "igt", igt );
@@ -599,6 +601,8 @@ public class InformeMes
 		
 		writer.flush();
 	}
+
+    
 	
 	/**
 	 * Método que calcula el campo de observaciones.
